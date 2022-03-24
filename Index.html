@@ -1,0 +1,112 @@
+<html>
+<meta charset="utf-8" />
+
+<head>
+    <title>Zoning Incendie</title>
+
+    <!-- Importation des différents fichiers du projet -->
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+    <!-- Bibliothèque jQuery et jQuery ui (auto complete) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <body>
+
+        <main>
+
+            <div id="center">
+
+                <!-- Titre de la page -->
+                <h1>Zoning Incendie</h1>
+                <div class="ui-widget">
+
+                    <!-- zone de recherche -->
+
+                    <select id="recherche">
+                        <option value="tous"> Tous </option>
+                        <option value="zone"> Zone </option>
+                        <option value="capteur"> Capteur </option>
+                        <option value="intrusion"> Intrusion </option>
+                    </select>
+
+                    <select id="bat">
+                        <option value="FEDD1"> FEDD1 </option>
+                        <option value="FEDD2"> FEDD2 </option>
+                    </select>
+
+                    <input type="text" id="tags" placeholder="Entrer information">
+                    <input type="button" onclick="getInfosRecherche()" value="Recherche">
+
+                </div>
+
+                <!-- affichage des infos récupérées par la recherche -->
+                <canvas id="infoRecherche" width="600" height="115" style="border:1px solid #000000;"></canvas><br>
+
+                <!-- Bouton affichant le plan d'evacuation -->
+                <input id="boutonEvac" type="button" onclick="dessinerPlanEvac()" value="&Eacute;vacuation">
+
+                <!-- Importations des images -->
+                <img src="images/FEDD1_RDC.jpg" id="imgFEDD1_RDC">
+                <img src="images/FEDD1_etage.jpg" id="imgFEDD1_etage">
+                <img src="images/FEDD2_RDC.jpg" id="imgFEDD2_RDC">
+                <img src="images/FEDD2_etage.jpg" id="imgFEDD2_etage">
+                <img src="images/FEDD1_RDC_evac.PNG" id="imgFEDD1_RDC_evac">
+                <img src="images/FEDD1_etage_evac.PNG" id="imgFEDD1_etage_evac">
+                <img src="images/FEDD2_RDC_evac.PNG" id="imgFEDD2_RDC_evac">
+                <img src="images/image detecteur intrusion.PNG" id="imgDetecteurIntrusion">
+                <img src="images/image sirene.PNG" id="imgSirene">
+                <img src="images/image camera.png" id="imgCamera">
+
+                <!-- canvas contenant les images-->
+                <canvas id="plan" width="0px" height="0px"> </canvas>
+
+                <!-- Boutons permettant d'afficher les plans, les camréras et les detecteurs d'intrusion -->
+                <div id="boutons">
+
+                    <button class="boutonPlan" id="FEDD1_RDC">
+                        <p>FEDD1 RDC</p>
+                    </button>
+
+                    <button class="boutonPlan" id="FEDD1_etage">
+                        <p>FEDD1 &eacute;tage</p>
+                    </button>
+
+                    <button class="boutonPlan" id="FEDD2_RDC">
+                        <p>FEDD2 RDC</p>
+                    </button>
+
+                    <button class="boutonPlan" id="FEDD2_etage">
+                        <p>FEDD2 &eacute;tage</p>
+                    </button><br>
+
+                    <button class="boutonPlan" id="camera">
+                        <p>Afficher cam&eacute;ras</p>
+                    </button>
+
+                    <button class="boutonPlan" id="intrusion">
+                        <p>Afficher D&eacute;tecteurs d'intrusions</p>
+                    </button>
+
+                </div>
+
+            </div>
+            <script type="text/javascript" src="javascript.js"></script>
+            <script type="text/javascript" src="dessinzone.js"></script>
+            <script>
+                //on cache les images, le bouton evac, le canvas infoRecherche au démarage et on fait un focus sur le champ input
+                $("img").hide();
+                $("#boutonEvac").hide();
+                $("#infoRecherche").hide();
+                $("#tags").focus();
+            </script>
+
+        </main>
+
+    </body>
+
+</html>
